@@ -90,3 +90,6 @@ Add savings timeline visuals
 Possible integration of a stock portfolio section
 Refine Alfie’s insights matching new features
 Continue testing with data
+
+15/10/2026
+This week I focused on building an interactive application with a Gradio interface. I used AI to help structure the interface with my object design, I made sure to critically evaluate the output. I have the full analysis with file upload, data cleaning, spending summaries, savings projections, visualisations. I learned about how Gradios block layout works and how to organise using rows, columns and tabs. I made sure error handling was in place with messages and validations. AI was helpful for drafting and the final implementation requires my own judgement. I want to enhance the interface by making Alfie feel more conversational. This week so far has advanced the useability of the tool and increased my confidence in integrating AI-assisted development with my own coding knowledge and skills.   
