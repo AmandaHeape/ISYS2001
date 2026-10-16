@@ -92,4 +92,81 @@ Refine Alfie’s insights matching new features
 Continue testing with data
 
 15/10/2026
-This week I focused on building an interactive application with a Gradio interface. I used AI to help structure the interface with my object design, I made sure to critically evaluate the output. I have the full analysis with file upload, data cleaning, spending summaries, savings projections, visualisations. I learned about how Gradios block layout works and how to organise using rows, columns and tabs. I made sure error handling was in place with messages and validations. AI was helpful for drafting and the final implementation requires my own judgement. I want to enhance the interface by making Alfie feel more conversational. This week so far has advanced the useability of the tool and increased my confidence in integrating AI-assisted development with my own coding knowledge and skills.   
+This week and last week I focused on building an interactive application with a Gradio interface. I used AI to help structure the interface with my object design, I made sure to critically evaluate the output. I have the full analysis with file upload, data cleaning, spending summaries, savings projections, visualisations. I learned about how Gradios block layout works and how to organise using rows, columns and tabs. I made sure error handling was in place with messages and validations. AI was helpful for drafting and the final implementation requires my own judgement. I want to enhance the interface by making Alfie feel more conversational. This week so far has advanced the useability of the tool and increased my confidence in integrating AI-assisted development with my own coding knowledge and skills.   
+
+16/10/2026
+<img width="740" height="273" alt="image" src="https://github.com/user-attachments/assets/9a825507-9130-4fb1-9f31-14f9ad1d911c" />
+
+<img width="415" height="185" alt="image" src="https://github.com/user-attachments/assets/54532f4d-04dc-427b-b908-b5d7270f3273" />
+
+Switched to gemini-3.8-flash still having the 503 error I used Gemini to add a failsafe and other models of the API to reduce error risk, unfortunately after going back and forth it transformed my code into something too large and complicated for me to comprehend with my current coding knowledge and it unfortunately still did not work. It added a duplicated Gradio interface and unorganised blocks of code throughout the textbook that appeared redundant to the project. I rejected the output and reverted back to my original through my code path in the Github repository. 
+<img width="800" height="209" alt="image" src="https://github.com/user-attachments/assets/154c14b1-38ef-4745-bebf-4a024c06eef3" />
+
+
+To ensure accuracy I implemented testing with my pseudocode and requirements I worked with Gemini who helped in targeting accuracy and edge cases.
+
+Calculation Verification 
+
+Verified that Alfie’s data-cleaning and scripts matched manual transaction from the sample_transactions.csv file:
+
+Total spending, category subtotals, top merchant identification, monthly totals breakdown results all as expected.
+
+To prevent from crashing if users upload messy real world data, I simulated five scenarios. Below are the tested conditions.
+
+Edge Case A: Empty Dataframes
+
+Edge Case B: Missing Columns
+
+Edge Case C: Non-Numeric/Corrupted Amounts
+
+Edge Case D: Negative Amounts (Refund Offsets)
+
+Edge Case E: Irregular Date Formats (Bug was caught in testing)
+Condition Tested: Mixed chronological formats in a single upload (e.g., combining 03/01/2024, 2024-01-05, and 7-Jan-2024).
+Bug/Issue Caught: Standard pd.to_datetime parsers failed or threw out entries when encountering multiple styles.
+Solution/Handling: Updated the core cleaning helper to use pd.to_datetime(..., format='mixed', errors='coerce') which parsed all styles into standard timestamp objects, allowing sorting.
+
+With this testing there is now 100% pass across all the verification steps.
+
+16/10 Entry 2
+
+I managed to gain API connection with gemini-3.5-flash.
+I enchanced and rewrote code for each section:
+
+*Input and validation* 
+I manually added notes to each section, improved readability, and clarified expectations.
+
+*Cleaning data* 
+I rewrote the code to handle column name discrepancies and validated that rows still remained after cleaning.
+For total spending, I used pandas.sum() to simplify the loop logic.
+
+*Savings goal planner*
+I added sentinel loops and Gemini API insights.  
+
+*Alfies personalised insights*
+I created the chatbot function so users can ask real questions and receive insightful responses from Alfie based on the uploaded data.
+
+*Gradio interface*
+The Gradio interface needed reworking with all the new features added.
+It now includes Alfie’s personalised insights chatbot, and testing on PDF and CSV documents worked once the API connection issue was resolved.
+The savings tracker feature was included.
+The previous versions generated by Gemini were more basic and didn’t encompass all sections, which showed me the importance of checking generated code and tailoring it to my requirements with more thoughtful oversight.
+
+*Testing*
+The draft testing section was a good start but didn’t assert the correct tests for the project.
+I built on the foundations with more depth and test cases for each possible section.
+I AI‑generated the test cases with more thoughtful prompting, including each section of the project and asserting for every scenario.
+
+Overall, across every section today I actively tested, rewrote sections, added notes and improved logic for much better clarity. I added new features where I saw opportunity for improvement. I removed code that was not necessary and repetitive, such as downloading the Gemini API, as it added visual clutter. I made each sections logic build on the previous rather than acting as standalone features. 
+
+I decided not to action the following items brainstormed in previous weeks, as I did not feel they were required.
+The project is already advanced and provides a well‑rounded user experience.
+Too many features could overcomplicate it and distract from the purpose of the tool:
+- Add savings timeline visuals
+- Possible integration of a stock portfolio section
+  I did, however, action making Alfie more conversational in its personalised insights and chat feature.
+
+# Lessons Learned 
+ The biggest lesson I learned was the importance of treating AI as a supporting tool. Even when Gemini generated helpful starting points, the code only became correct, reliable and user friendly once I rewrote sections myself, validated assumptions, and tested every scenario. 
+ 
+ It became essential to understand the logic behind each feature and not take AI output at face value. Building features that work together not in isolation was very important to understand. Earlier versions of the project felt disconnected, once I went through line by line, rewrote code, improved validations, loops, and logic the tool became useful and cohesive. Knowing when not to add a feature was important, for example I was initially adding the chatbot feature in both my saving goal planner and personalised insights. Iterating deliberately and thoughtful design choices helped create better functionality in this project.  
